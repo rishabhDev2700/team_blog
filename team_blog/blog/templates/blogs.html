@@ -1,0 +1,16 @@
+{% extends "base.html" %}
+{% block title %}Home{% endblock %}
+{% block content %}
+{% for blog in blogs %}
+<div class="card">
+    <div class="card-header">
+        Recent post
+    </div>
+    <div class="card-body">
+        <h5 class="card-title">{{title}}</h5>
+        <p class="card-text">{{description}}</p>
+        <a href="#" class="btn btn-primary">Read full blog</a>
+    </div>
+</div>
+{% endfor %}
+{% endblock %}
