@@ -36,23 +36,19 @@
                         <li class="nav-item">
                             <a class="nav-link" href="#">Contact</a>
                         </li>
-                        <li class="mx-3">
-                            <a href="#">
-                                <button class="btn btn-success m-1">Login</button>
-                            </a>
+                        {% if user.is_authenticated %}
+                        <li class="btn btn-danger mx-3">
+                            <a href="{% url 'logout' %}">Logout</a>
                         </li>
+                        {% else %}
                         <li class="mx-3">
-                            <a href="#">
-                                <button class="btn btn-success m-1">Register</button>
-                            </a>
-                        </li>
-                        <li>
-                            <button type="button" class="btn btn-primary" data-bs-toggle="modal"
+                            <button type="button" class="btn btn-success" data-bs-toggle="modal"
                                     data-bs-target="#login-user"
                                     data-bs-whatever="@mdo">Login
                             </button>
                         </li>
-                        <li>
+                        {% endif %}
+                        <li class="mx-3">
                             <button type="button" class="btn btn-primary" data-bs-toggle="modal"
                                     data-bs-target="#register-user"
                                     data-bs-whatever="@mdo">Register Now

@@ -9,6 +9,10 @@ from .models import BlogPost, Author
 
 
 def home(request):
+    user = request.user
+    print(user.username)
+    user = User.objects.get(username='rishi')
+    print(user.last_name)
     return render(request, "base.html", {})
 
 
@@ -19,6 +23,7 @@ def blog(request):
     # content = request.POST['blog_content']
     # blogpost = BlogPost(author=,title=title,content=content)
     # blogpost.save()
+
     return render(request, "blogs.html", )
 
 
@@ -49,6 +54,11 @@ def signup(request):
         new_user.first_name = fname
         new_user.last_name = lname
         new_user.save()
-        author = Author(user=new_user,date_of_birth=dob).save()
+        Author(user=new_user, date_of_birth=dob).save()
         messages.success(request, "Account Created successfully")
         return redirect('home')
+
+
+def logout_user(request):
+    logout(request)
+    return redirect('home')
