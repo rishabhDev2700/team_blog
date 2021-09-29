@@ -33,10 +33,11 @@ def login_user(request):
         if form.is_valid():
             username = form.cleaned_data['username']
             password = form.cleaned_data['password']
-            user = authenticate()
+            user = authenticate(username=username, password=password)
             if user is None:
                 return render(request, 'login.html')
-            return render(request, 'blogs.html', {user})
+            login(request, user)
+            return redirect('home')
 
     form = LoginForm()
     return render(request, "login.html", {'form': form})

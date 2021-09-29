@@ -18,7 +18,7 @@
     <div class="row">
         <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
             <div class="container">
-                <a class="navbar-brand" href="#"><img src="/img/default.png" width="90" alt="Trident"
+                <a class="navbar-brand" href="{% url 'home' %}"><img src="/img/default.png" width="90" alt="Trident"
                                                       class="img-thumbnail"></a>
                 <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav"
                         aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
@@ -28,17 +28,17 @@
                 <div class="collapse navbar-collapse" id="navbarNav">
                     <ul class="navbar-nav mx-3">
                         <li class="nav-item">
-                            <a class="nav-link active" aria-current="page" href="#">Home</a>
+                            <a class="nav-link active" aria-current="page" href="{% url 'home' %}">Home</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" href="#">Blogs</a>
+                            <a class="nav-link" href="{% url 'blog_posts' %}">Blogs</a>
                         </li>
                         <li class="nav-item">
                             <a class="nav-link" href="#">Contact</a>
                         </li>
                         {% if user.is_authenticated %}
-                        <li class="btn btn-danger mx-3">
-                            <a href="{% url 'logout' %}">Logout</a>
+                        <li class="nav-item">
+                            <a href="{% url 'logout' %}" class="btn btn-danger mx-3">Logout</a>
                         </li>
                         {% else %}
                         <li class="mx-3">
@@ -49,10 +49,12 @@
                         </li>
                         {% endif %}
                         <li class="mx-3">
+                            {% if not user.is_authenticated %}
                             <button type="button" class="btn btn-primary" data-bs-toggle="modal"
                                     data-bs-target="#register-user"
                                     data-bs-whatever="@mdo">Register Now
                             </button>
+                            {% endif %}
                         </li>
                     </ul>
                 </div>
